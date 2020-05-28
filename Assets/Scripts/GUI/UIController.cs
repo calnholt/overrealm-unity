@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField]
-    private Transform userStatBoard;
-    [SerializeField]
-    private Transform opponentStatBoard;
     private StatCubeBoardController userStatBoardController;
     private StatCubeBoardController opponentStatBoardController;
 
     void Start()
     {
-        userStatBoardController = userStatBoard.GetComponent<StatCubeBoardController>();
-        opponentStatBoardController = opponentStatBoard.GetComponent<StatCubeBoardController>();
+        List<StatCubeBoardController> statCubeBoardControllers = GameObjectHelper.GetComponentsInChildrenList<StatCubeBoardController>(gameObject);
+        userStatBoardController = statCubeBoardControllers.Find(m => m.ActivePlayerFlg);
+        opponentStatBoardController = statCubeBoardControllers.Find(m => !m.ActivePlayerFlg);
     }
 
     public StatCubeBoardModel getPlayerStatCubeBoardModel(bool isUser)

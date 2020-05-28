@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Constants;
 
-public class MonsterCardModel : MonoBehaviour
+public class MonsterCardModel : CardModel
 {
     [SerializeField]
     private string monsterName;

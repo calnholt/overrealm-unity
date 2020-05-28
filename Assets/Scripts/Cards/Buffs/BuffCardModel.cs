@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Constants;
 
-public class BuffCardModel : MonoBehaviour
+public class BuffCardModel : CardModel
 {
     [SerializeField]
     private Timings timing;

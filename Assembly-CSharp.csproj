@@ -71,6 +71,8 @@
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
     <Compile Include="Assets\Scripts\Boards\Action Board\ActionBoardView.cs" />
+    <Compile Include="Assets\Scripts\Boards\Action Board\ActionButtonModel.cs" />
+    <Compile Include="Assets\Scripts\Boards\Player Hearts\PlayerHeartsView.cs" />
     <Compile Include="Assets\Scripts\Boards\PlayerMonsters\PlayerMonstersController.cs" />
     <Compile Include="Assets\Scripts\Boards\Stat Cube Board\StatCubeBoardController.cs" />
     <Compile Include="Assets\Scripts\Boards\Stat Cube Board\StatCubeBoardModel.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="Assets\Scripts\Cards\Buffs\BuffCardController.cs" />
     <Compile Include="Assets\Scripts\Cards\Buffs\BuffCardModel.cs" />
     <Compile Include="Assets\Scripts\Cards\Buffs\BuffCardView.cs" />
+    <Compile Include="Assets\Scripts\Cards\CardModel.cs" />
     <Compile Include="Assets\Scripts\Cards\Monsters\MonsterCardModel.cs" />
     <Compile Include="Assets\Scripts\Cards\Monsters\MonsterCardView.cs" />
     <Compile Include="Assets\Scripts\FullMonster\FullMonsterModel.cs" />

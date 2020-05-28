@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionCardModel : MonoBehaviour
+public class ActionCardModel : CardModel 
 {
     [SerializeField]
     private string attackName;

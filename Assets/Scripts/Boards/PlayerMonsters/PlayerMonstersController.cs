@@ -18,7 +18,7 @@ public class PlayerMonstersController : MonoBehaviour
         List<FullMonsterModel> models = GameObjectHelper.GetComponentsInChildrenList<FullMonsterModel>(gameObject);
         this.activeMonsterModel = models.Find(model => model.IsActive);
         this.leftInactiveMonster = models.Find(model => model.IsLeft);
-        this.rightInactiveMonster = models.Find(model => !model.IsLeft);
+        this.rightInactiveMonster = models.Find(model => !model.IsLeft && !model.IsActive);
     }
 
     // Update is called once per frame

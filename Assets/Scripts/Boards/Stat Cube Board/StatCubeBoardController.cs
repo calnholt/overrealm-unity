@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class StatCubeBoardController : MonoBehaviour
 {
+    [SerializeField]
+    private bool activePlayerFlg;
     private StatCubeBoardModel model;
     private const int MIN = -4;
     private const int MAX = 4;
-    
+
+    public bool ActivePlayerFlg { get => activePlayerFlg; set => activePlayerFlg = value; }
 
     void Awake()
     {
