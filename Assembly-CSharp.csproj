@@ -80,9 +80,11 @@
     <Compile Include="Assets\Scripts\Cards\Actions\ActionCardController.cs" />
     <Compile Include="Assets\Scripts\Cards\Actions\ActionCardModel.cs" />
     <Compile Include="Assets\Scripts\Cards\Actions\ActionCardView.cs" />
+    <Compile Include="Assets\Scripts\Cards\Actions\Apply Cards\ApplyBuffController.cs" />
+    <Compile Include="Assets\Scripts\Cards\Actions\Apply Cards\ApplyDiscardController.cs" />
     <Compile Include="Assets\Scripts\Cards\Buffs\BuffCardController.cs" />
+    <Compile Include="Assets\Scripts\Cards\Buffs\BuffCardGUIModel.cs" />
     <Compile Include="Assets\Scripts\Cards\Buffs\BuffCardModel.cs" />
-    <Compile Include="Assets\Scripts\Cards\Buffs\BuffCardView.cs" />
     <Compile Include="Assets\Scripts\Cards\CardModel.cs" />
     <Compile Include="Assets\Scripts\Cards\Monsters\MonsterCardModel.cs" />
     <Compile Include="Assets\Scripts\Cards\Monsters\MonsterCardView.cs" />
@@ -91,6 +93,8 @@
     <Compile Include="Assets\Scripts\GUI\Draggable.cs" />
     <Compile Include="Assets\Scripts\GUI\Rotater.cs" />
     <Compile Include="Assets\Scripts\GUI\UIController.cs" />
+    <Compile Include="Assets\Scripts\Hand\HandController.cs" />
+    <Compile Include="Assets\Scripts\Hand\HandModel.cs" />
     <Compile Include="Assets\Scripts\Helpers\Constants.cs" />
     <Compile Include="Assets\Scripts\Helpers\GameObjectHelper.cs" />
     <None Include="Assets\Demigiant\DOTween\readme.txt" />

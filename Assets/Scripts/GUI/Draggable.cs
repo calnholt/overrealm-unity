@@ -6,26 +6,24 @@ public class Draggable : MonoBehaviour
     // PRIVATE FIELDS
     // a flag to know if we are currently dragging this GameObject
     private bool dragging = false;
-
     // distance from the center of this Game Object to the point where we clicked to start dragging 
     private Vector3 pointerDisplacement = Vector3.zero;
-
     // distance from camera to mouse on Z axis 
     private float zDisplacement;
 
+    public bool Dragging { get => dragging; set => dragging = value; }
+
     void onStart()
     {
-        Debug.Log("here");
     }
 
     // MONOBEHAVIOUR METHODS
     void OnMouseDown()
     {
-        Debug.Log("here");
-        dragging = true;
-        zDisplacement = -Camera.main.transform.position.z + transform.position.z;
+        Dragging = true;
+        zDisplacement = -Camera.main.transform.position.z + transform.parent.position.z;
         if (UsePointerDisplacement)
-            pointerDisplacement = -transform.position + MouseInWorldCoords();
+            pointerDisplacement = -transform.parent.position + MouseInWorldCoords();
         else
             pointerDisplacement = Vector3.zero;
     }
@@ -33,19 +31,18 @@ public class Draggable : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (dragging)
+        if (Dragging)
         { 
             Vector3 mousePos = MouseInWorldCoords();
-            Debug.Log(mousePos);
-            transform.position = new Vector3(mousePos.x - pointerDisplacement.x, mousePos.y - pointerDisplacement.y, transform.position.z);   
+            transform.parent.position = new Vector3(mousePos.x - pointerDisplacement.x, mousePos.y - pointerDisplacement.y, transform.parent.position.z);   
         }
     }
 
     void OnMouseUp()
     {
-        if (dragging)
+        if (Dragging)
         {
-            dragging = false;
+            Dragging = false;
         }
     }   
 
@@ -53,7 +50,6 @@ public class Draggable : MonoBehaviour
     private Vector3 MouseInWorldCoords()
     {
         var screenMousePos = Input.mousePosition;
-        Debug.Log(screenMousePos);
         screenMousePos.z = zDisplacement;
         return Camera.main.ScreenToWorldPoint(screenMousePos);
     }

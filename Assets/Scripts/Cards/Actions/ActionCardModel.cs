@@ -34,7 +34,10 @@ public class ActionCardModel : CardModel
 
     private int originalAttack;
     private int originalSpeed;
-    
+
+    private List<GameObject> buffsToApply = new List<GameObject>();
+    private List<GameObject> discardsToApply = new List<GameObject>();
+
 
     public string AttackName { get => attackName; set => attackName = value; }
     public int Attack { get => attack; set => attack = value; }
@@ -47,6 +50,8 @@ public class ActionCardModel : CardModel
     public bool StatusFlg { get => statusFlg; set => statusFlg = value; }
     public bool ReactionFlg { get => reactionFlg; set => reactionFlg = value; }
     public int AuraDuration { get => auraDuration; set => auraDuration = value; }
+    public List<GameObject> BuffsToApply { get => buffsToApply; set => buffsToApply = value; }
+    public List<GameObject> DiscardsToApply { get => discardsToApply; set => discardsToApply = value; }
 
     private void Start()
     {
