@@ -3,15 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Constants;
 
-public enum ActionCardState
-{
-    selected,
-    unselected,
-    hoveringSelected,
-    hoveringUnselected,
-    hoveringWithBuff,
-}
-
 public class ActionCardModel : CardModel, IActionSelectable
 {
     [SerializeField]
@@ -46,9 +37,7 @@ public class ActionCardModel : CardModel, IActionSelectable
 
     private int originalAttack;
     private int originalSpeed;
-    private ActionCardState state;
-    private bool isHovering = false;
-    private bool isSelected = false;
+    
     private bool isBuff = false;
 
     private List<GameObject> buffsToApply = new List<GameObject>();
@@ -68,9 +57,6 @@ public class ActionCardModel : CardModel, IActionSelectable
     public int AuraDuration { get => auraDuration; set => auraDuration = value; }
     public List<GameObject> BuffsToApply { get => buffsToApply; set => buffsToApply = value; }
     public List<GameObject> DiscardsToApply { get => discardsToApply; set => discardsToApply = value; }
-    public ActionCardState State { get => state; set => state = value; }
-    public bool IsHovering { get => isHovering; set => isHovering = value; }
-    public bool IsSelected { get => isSelected; set => isSelected = value; }
     public bool IsBuff { get => isBuff; set => isBuff = value; }
     public Elements Element { get => element; set => element = value; }
 

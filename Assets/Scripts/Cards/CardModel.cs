@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class CardModel : MonoBehaviour
 {
-    private int id;
+    protected bool isHovering = false;
+    protected bool isSelected = false;
 
-    public int Id { get => id; set => id = value; }
-
-    private void Start()
-    {
-        Id = IDFactory.GetUniqueID();
-    }
+    public bool IsSelected { get => isSelected; set => isSelected = value; }
+    public bool IsHovering { get => isHovering; set => isHovering = value; }
 
 }
