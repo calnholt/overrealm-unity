@@ -112,14 +112,13 @@ public class ActionCardView : MonoBehaviour
             text.color = Color.black;
         } else if (value > originalValue)
         {
-            text.color = Color.green;
+            text.color = constantsSingleton.PositiveStat;
         } else
         {
-            text.color = Color.red;
+            text.color = constantsSingleton.NegativeStat;
         }
     }
 
-    //TODO: looks funky
     private void setSortingOrder(int order)
     {
         spriteRenderer.sortingOrder = order;
