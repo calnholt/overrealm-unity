@@ -12,9 +12,9 @@ public class HandModel : MonoBehaviour
     public GameObject DraggingCard { get => draggingCard; set => draggingCard = value; }
 
     // when returning back to hand, get nearest index
-    public int getDraggingCardIndex()
+    public int getGameObjectIndex(GameObject obj)
     {
-        float x = this.draggingCard.transform.position.x;
+        float x = obj.transform.position.x;
         int index = 0;
         cards.ForEach(card =>
         {

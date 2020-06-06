@@ -42,7 +42,7 @@ public class HandController : MonoBehaviour
             if (buff.State == BuffCardState.movingToHand)
             {
                 // insert dragging card back into hand list
-                handModel.Cards.Insert(handModel.getDraggingCardIndex(), buff.transform.parent.gameObject);
+                handModel.Cards.Insert(handModel.getGameObjectIndex(handModel.DraggingCard.gameObject), buff.transform.parent.gameObject);
                 updateHandFanning();
                 handModel.DraggingCard = null;
             }
@@ -67,6 +67,7 @@ public class HandController : MonoBehaviour
     // applied cards are added to the dictionary
     // check to see cards in the dictionary have a movingToHand state, and add them back to the player's hand
     // this prevents the need of manually adding buffs to the model, instead just catches and adds via state
+    // inserts into nearest index
     void checkIfAppliedCardsMovingBackToHand()
     {
         if (appliedCardsMap.Count > 0)
@@ -77,7 +78,8 @@ public class HandController : MonoBehaviour
                 if (entry.Value.State == BuffCardState.movingToHand)
                 {
                     appliedCardsMap.Remove(entry.Key);
-                    handModel.Cards.Add(entry.Value.transform.parent.gameObject);
+                    GameObject objToAdd = entry.Value.transform.parent.gameObject;
+                    handModel.Cards.Insert(handModel.getGameObjectIndex(objToAdd), objToAdd);
                 }
             }
         }
