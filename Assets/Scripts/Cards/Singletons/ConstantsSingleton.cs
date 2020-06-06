@@ -19,12 +19,20 @@ public class ConstantsSingleton : GenericSingletonClass<ConstantsSingleton>
     [SerializeField]
     private Color leaf;
 
+    [Header("Stat Colors")]
+    [SerializeField]
+    private Color positiveStat;
+    [SerializeField]
+    private Color negativeStat;
+
     public Color Fire { get => fire; set => fire = value; }
     public Color Water { get => water; set => water = value; }
     public Color Rock { get => rock; set => rock = value; }
     public Color Death { get => death; set => death = value; }
     public Color Electric { get => electric; set => electric = value; }
     public Color Leaf { get => leaf; set => leaf = value; }
+    public Color PositiveStat { get => positiveStat; set => positiveStat = value; }
+    public Color NegativeStat { get => negativeStat; set => negativeStat = value; }
 
     public Color getColor(Elements element)
     {
@@ -46,4 +54,6 @@ public class ConstantsSingleton : GenericSingletonClass<ConstantsSingleton>
                 return new Color();
         }
     }
+
+    
 }
