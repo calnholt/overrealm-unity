@@ -5,15 +5,11 @@ using UnityEngine;
 public class MonsterCardController : MonoBehaviour
 {
     private MonsterCardModel monsterCardModel;
-    [SerializeField]
-    private GameObject handModelObj;
-    private HandModel handModel;
     private BuffCardModel buff;
 
     void Start()
     {
         monsterCardModel = GameObjectHelper.getScriptFromModel<MonsterCardModel>(gameObject);
-        handModel = handModelObj.GetComponent<HandModel>();
     }
 
     void Update()
@@ -38,7 +34,6 @@ public class MonsterCardController : MonoBehaviour
     {
         if (buff.State == BuffCardState.movingToHand && monsterCardModel.AppliedCard)
         {
-            handModel.Cards.Add(monsterCardModel.AppliedCard.transform.parent.gameObject);
             monsterCardModel.AppliedCard = null;
         }
     }

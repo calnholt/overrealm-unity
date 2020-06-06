@@ -10,6 +10,7 @@ public class HandController : MonoBehaviour
     private Vector3 rightBounds;
     private float duration = 0.5f;
     private int previousNumOfCards = -1;
+    private Dictionary<int, BuffCardModel> appliedCardsMap = new Dictionary<int, BuffCardModel>();
 
     void Start()
     {
@@ -49,6 +50,7 @@ public class HandController : MonoBehaviour
             else if (buff.State != BuffCardState.dragging && !buff.isDraggingOverApplied())
             {
                 updateHandFanning();
+                appliedCardsMap.Add(buff.GetInstanceID(), buff);
                 handModel.DraggingCard = null;
             }
         }
@@ -57,6 +59,27 @@ public class HandController : MonoBehaviour
         {
             updateHandFanning();
             previousNumOfCards = currentNumOfCards;
+        }
+        checkIfAppliedCardsMovingBackToHand();
+    }
+
+    // whenever a card is removed from the hand, it has been applied
+    // applied cards are added to the dictionary
+    // check to see cards in the dictionary have a movingToHand state, and add them back to the player's hand
+    // this prevents the need of manually adding buffs to the model, instead just catches and adds via state
+    void checkIfAppliedCardsMovingBackToHand()
+    {
+        if (appliedCardsMap.Count > 0)
+        {
+            Dictionary<int, BuffCardModel> copyMap = new Dictionary<int, BuffCardModel>(appliedCardsMap);
+            foreach (KeyValuePair<int, BuffCardModel> entry in copyMap)
+            {
+                if (entry.Value.State == BuffCardState.movingToHand)
+                {
+                    appliedCardsMap.Remove(entry.Key);
+                    handModel.Cards.Add(entry.Value.transform.parent.gameObject);
+                }
+            }
         }
     }
 

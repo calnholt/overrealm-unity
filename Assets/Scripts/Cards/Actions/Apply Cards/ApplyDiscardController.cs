@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class ApplyDiscardController : MonoBehaviour
 {
-    //TODO: do this dynamically
-    [SerializeField]
-    private GameObject handModelObj;
-    private HandModel handModel;
     private ActionCardModel actionCardModel;
     private GameObject discardToApply;
     private BuffCardModel buffCardModel;
@@ -15,7 +11,6 @@ public class ApplyDiscardController : MonoBehaviour
     void Start()
     {
         actionCardModel = GameObjectHelper.getScriptFromModel<ActionCardModel>(gameObject.transform.parent.gameObject);
-        handModel = handModelObj.GetComponent<HandModel>();
     }
 
     // Update is called once per frame
@@ -35,7 +30,6 @@ public class ApplyDiscardController : MonoBehaviour
         int index = actionCardModel.DiscardsToApply.FindIndex(buff => buff.transform.GetComponentInChildren<BuffCardModel>().State == BuffCardState.movingToHand);
         if (index >= 0)
         {
-            handModel.Cards.Add(actionCardModel.DiscardsToApply[index]);
             actionCardModel.DiscardsToApply.RemoveAt(index);
         }
     }

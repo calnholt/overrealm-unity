@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class ApplyBuffController : MonoBehaviour
 {
-    //TODO: do this dynamically
-    [SerializeField]
-    private GameObject handModelObj;
-    private HandModel handModel;
     private ActionCardModel actionCardModel;
     private GameObject buffToApply;
     private BuffCardModel buffCardModel;
@@ -15,7 +11,6 @@ public class ApplyBuffController : MonoBehaviour
     void Start()
     {
         actionCardModel = GameObjectHelper.getScriptFromModel<ActionCardModel>(gameObject.transform.parent.gameObject);
-        handModel = handModelObj.GetComponent<HandModel>();
     }
 
     void Update()
@@ -34,7 +29,6 @@ public class ApplyBuffController : MonoBehaviour
         int index = actionCardModel.BuffsToApply.FindIndex(buff => buff.transform.GetComponentInChildren<BuffCardModel>().State == BuffCardState.movingToHand);
         if (index >= 0)
         {
-            handModel.Cards.Add(actionCardModel.BuffsToApply[index]);
             actionCardModel.BuffsToApply.RemoveAt(index);
         }
     }
