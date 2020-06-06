@@ -55,6 +55,15 @@ public class MonsterCardController : MonoBehaviour
         }
     }
 
+    private void OnMouseEnter()
+    {
+        monsterCardModel.IsHovering = true;
+    }
+
+    private void OnMouseExit()
+    {
+        monsterCardModel.IsHovering = false;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
