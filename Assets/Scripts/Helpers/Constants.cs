@@ -22,4 +22,15 @@ namespace Constants
     {
         PreActions, WithAttack, PostActions
     }
+    public enum Tags
+    {
+        Singleton, 
+    }
+    public static class SortingOrders
+    {
+        public const int BUFF_HOVER = 10;
+        public const int BUFF_DEFAULT = 0;
+        public const int ACTION_HOVER = 10;
+        public const int ACTION_DEFAULT = 4;
+    }
 }

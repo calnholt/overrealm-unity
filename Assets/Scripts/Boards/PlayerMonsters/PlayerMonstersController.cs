@@ -4,26 +4,44 @@ using UnityEngine;
 
 public class PlayerMonstersController : MonoBehaviour
 {
-    private FullMonsterModel activeMonsterModel;
-    private FullMonsterModel leftInactiveMonster;
-    private FullMonsterModel rightInactiveMonster;
+    [HideInInspector]
+    public PlayerMonstersModel playerMonstersModel;
+    private CardModel previousSelectedAction;
 
-    public FullMonsterModel ActiveMonsterModel { get => activeMonsterModel; set => activeMonsterModel = value; }
-    public FullMonsterModel LeftInactiveMonster { get => leftInactiveMonster; set => leftInactiveMonster = value; }
-    public FullMonsterModel RightInactiveMonster { get => rightInactiveMonster; set => rightInactiveMonster = value; }
-
-    // Start is called before the first frame update
     void Start()
     {
-        List<FullMonsterModel> models = GameObjectHelper.GetComponentsInChildrenList<FullMonsterModel>(gameObject);
-        this.activeMonsterModel = models.Find(model => model.IsActive);
-        this.leftInactiveMonster = models.Find(model => model.IsLeft);
-        this.rightInactiveMonster = models.Find(model => !model.IsLeft && !model.IsActive);
+        playerMonstersModel = GameObjectHelper.getScriptFromModel<PlayerMonstersModel>(gameObject);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        int id = previousSelectedAction ? previousSelectedAction.GetInstanceID() : -1;
+        CardModel currentSelectedAction = playerMonstersModel.getSelectedActionModel(id);
+        if (!currentSelectedAction) return;
+        checkDifferentActionIsSelected(currentSelectedAction);
+    }
+
+
+    void checkDifferentActionIsSelected(CardModel currentSelectedAction)
+    {
+        if (!isCurrentSelectedDifferent(currentSelectedAction)) return;
+        if (previousSelectedAction)
+        {
+            previousSelectedAction.GetComponent<IActionSelectable>().unselectAction();
+        }
+        previousSelectedAction = currentSelectedAction;
+    }
+
+    private bool isCurrentSelectedDifferent(CardModel currentSelectedAction)
+    {
+        if (!currentSelectedAction)
+        {
+            return false;
+        }
+        if (!previousSelectedAction)
+        {
+            return true;
+        }
+        return currentSelectedAction.GetInstanceID() != previousSelectedAction.GetInstanceID();
     }
 }

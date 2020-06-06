@@ -11,40 +11,71 @@ public class BuffCardController : MonoBehaviour
     private float height;
     private BuffCardModel buffCardModel;
     private GameObject card;
-    private Vector3 originalPosition;
+    private Vector3 originalPosition; // 
     private Sequence sequence;
-
+    private Draggable draggable;
 
     void Start()
     {
         buffCardModel = GameObjectHelper.getScriptFromModel<BuffCardModel>(gameObject);
         card = buffCardModel.transform.parent.gameObject;
+        sequence = DOTween.Sequence();
+        draggable = GetComponent<Draggable>();
+    }
+
+    private void Update()
+    {
+        updateDraggable();
+    }
+
+    // when transitioning to states where dragging shouldn't be active, set draggable dragging to false
+    private void updateDraggable()
+    {
+        if (buffCardModel.State == BuffCardState.movingToHand || buffCardModel.State == BuffCardState.fanning)
+        {
+            draggable.Dragging = false;
+        }
     }
 
     private void OnMouseDown()
     {
-        killSequence();
-        buffCardModel.State = BuffCardState.dragging;
-        Debug.Log("buff model dragging");
+        sequence.Kill();
+        // return applied card to owner's hand
+        if (buffCardModel.isApplied())
+        {
+            buffCardModel.State = BuffCardState.movingToHand;
+        }
+        else if (buffCardModel.isDraggable())
+        {
+            buffCardModel.State = BuffCardState.dragging;
+        }
     }
 
+    // controls the destination of the buff depending on current state
     private void OnMouseUp()
     {
-        killSequence();
-        if (buffCardModel.State == BuffCardState.draggingOverApply)
+        sequence.Kill();
+        if (buffCardModel.State == BuffCardState.draggingOverDiscardApply)
         {
-            //killSequence();
-            buffCardModel.State = BuffCardState.draggingOverApply;
+            buffCardModel.State = BuffCardState.appliedAsDiscard;
+        }
+        else if (buffCardModel.State == BuffCardState.draggingOverBuffApply)
+        {
+            buffCardModel.State = BuffCardState.appliedAsBuff;
+        }
+        else if (buffCardModel.State == BuffCardState.draggingOverDrawThreeApply)
+        {
+            buffCardModel.State = BuffCardState.appliedAsDrawThree;
         }
         else
         {
-            //killSequence();
             buffCardModel.State = BuffCardState.movingToHand;
         }
     }
 
-    private void OnMouseOver()
+    private void OnMouseEnter()
     {
+        // moved from onmouseover, so if issues move back
         if (buffCardModel.State == BuffCardState.inHand || buffCardModel.State == BuffCardState.hoveringInHandMovingDown)
         {
             if (buffCardModel.State == BuffCardState.inHand)
@@ -52,10 +83,14 @@ public class BuffCardController : MonoBehaviour
                 originalPosition = transform.position;
             }
             buffCardModel.State = BuffCardState.hoveringInHandMovingUp;
-            killSequence();
+            sequence.Kill();
             sequence = DOTween.Sequence();
-            sequence.Append(card.transform.DOLocalMove(getTargetPosition(), 1f).SetEase(Ease.OutQuint));
+            sequence.Append(card.transform.DOLocalMove(getTargetPosition(), 1f)).SetEase(Ease.OutQuint);
             sequence.AppendCallback(finishHoveringEndCallback);
+        }
+        if (buffCardModel.isApplied())
+        {
+            buffCardModel.HoveringOverApplied = true;
         }
     }
 
@@ -64,12 +99,17 @@ public class BuffCardController : MonoBehaviour
         if (buffCardModel.State == BuffCardState.hoveringInHandFullyUp || buffCardModel.State == BuffCardState.hoveringInHandMovingUp)
         {
             buffCardModel.State = BuffCardState.hoveringInHandMovingDown;
-            killSequence();
+            sequence.Kill();
             sequence = DOTween.Sequence();
             sequence.Append(card.transform.DOLocalMove(originalPosition, 1f).SetEase(Ease.OutQuint));
             sequence.AppendCallback(finishHoveringStartCallback);
         }
+        if (buffCardModel.HoveringOverApplied)
+        {
+            buffCardModel.HoveringOverApplied = false;
+        }
     }
+
 
     private Vector3 getTargetPosition()
     {
@@ -88,11 +128,5 @@ public class BuffCardController : MonoBehaviour
         originalPosition = transform.position;
     }
 
-    private void killSequence()
-    {
-        if (sequence != null)
-        {
-            sequence.Kill();
-        }
-    }
+
 }

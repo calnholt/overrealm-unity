@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Constants;
 
-public class MonsterCardModel : CardModel
+public class MonsterCardModel : CardModel, IActionSelectable
 {
     [SerializeField]
     private string monsterName;
@@ -17,12 +17,18 @@ public class MonsterCardModel : CardModel
     [SerializeField]
     [Range(1,3)]
     private int complexity;
+    [SerializeField]
+    private bool isActive;
+    [SerializeField]
+    private bool isLeft;
 
     // status condition flags
     private bool isLeeched = false;
     private bool isBurned = false;
     private bool isParalyzed = false;
     private bool isFatigued = false;
+
+    private BuffCardModel appliedCard;
 
     // unique properties from other monsters
     private int wishes = 0;
@@ -38,4 +44,25 @@ public class MonsterCardModel : CardModel
     public bool IsFatigued { get => isFatigued; set => isFatigued = value; }
     public int Wishes { get => wishes; set => wishes = value; }
     public string MonsterName { get => monsterName; set => monsterName = value; }
+    public bool IsActive { get => isActive; set => isActive = value; }
+    public bool IsLeft { get => isLeft; set => isLeft = value; }
+    public BuffCardModel AppliedCard { get => appliedCard; set => appliedCard = value; }
+
+    public bool isApplied()
+    {
+        return appliedCard;
+    }
+
+    public bool isActionSelected()
+    {
+        return appliedCard;
+    }
+
+    public void unselectAction()
+    {
+        if (appliedCard)
+        {
+            appliedCard.State = BuffCardState.movingToHand;
+        }
+    }
 }

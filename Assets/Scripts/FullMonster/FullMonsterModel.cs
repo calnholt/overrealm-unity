@@ -11,7 +11,7 @@ public class FullMonsterModel : MonoBehaviour
 
     private MonsterCardModel monsterCardModel;
     private List<ActionCardModel> actionCardModels;
-    private BuffCardModel[] buffCardModels;
+    
 
     public bool IsActive { get => isActive; set => isActive = value; }
     public bool IsLeft { get => isLeft; set => isLeft = value; }
@@ -23,6 +23,16 @@ public class FullMonsterModel : MonoBehaviour
         monsterCardModel = transform.parent.GetComponentInChildren<MonsterCardModel>();
         actionCardModels = GameObjectHelper.GetComponentsInChildrenList<ActionCardModel>(transform.parent.gameObject);
         //buffObjects.ForEach(b => buffCardModels.Add(GameObjectHelper.getModel<BuffCardModel>(b)));
+    }
+
+    public bool isMonsterActionSelected()
+    {
+        return actionCardModels.Find(a => a.IsSelected);
+    }
+
+    public CardModel getSelectedMonsterAction()
+    {
+        return actionCardModels.Find(a => a.IsSelected);
     }
 
 }

@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\Boards\Action Board\ActionButtonModel.cs" />
     <Compile Include="Assets\Scripts\Boards\Player Hearts\PlayerHeartsView.cs" />
     <Compile Include="Assets\Scripts\Boards\PlayerMonsters\PlayerMonstersController.cs" />
+    <Compile Include="Assets\Scripts\Boards\PlayerMonsters\PlayerMonstersModel.cs" />
     <Compile Include="Assets\Scripts\Boards\Stat Cube Board\StatCubeBoardController.cs" />
     <Compile Include="Assets\Scripts\Boards\Stat Cube Board\StatCubeBoardModel.cs" />
     <Compile Include="Assets\Scripts\Boards\Stat Cube Board\StatCubeBoardView.cs" />
@@ -85,18 +86,28 @@
     <Compile Include="Assets\Scripts\Cards\Buffs\BuffCardController.cs" />
     <Compile Include="Assets\Scripts\Cards\Buffs\BuffCardGUIModel.cs" />
     <Compile Include="Assets\Scripts\Cards\Buffs\BuffCardModel.cs" />
+    <Compile Include="Assets\Scripts\Cards\Buffs\BuffCardView.cs" />
+    <Compile Include="Assets\Scripts\Cards\Buffs\BuffOverlayManager.cs" />
     <Compile Include="Assets\Scripts\Cards\CardModel.cs" />
+    <Compile Include="Assets\Scripts\Cards\Monsters\MonsterCardController.cs" />
     <Compile Include="Assets\Scripts\Cards\Monsters\MonsterCardModel.cs" />
     <Compile Include="Assets\Scripts\Cards\Monsters\MonsterCardView.cs" />
+    <Compile Include="Assets\Scripts\Cards\Singletons\ConstantsSingleton.cs" />
+    <Compile Include="Assets\Scripts\Cards\Singletons\GenericSingletonClass.cs" />
+    <Compile Include="Assets\Scripts\FullMonster\FullMonsterController.cs" />
     <Compile Include="Assets\Scripts\FullMonster\FullMonsterModel.cs" />
     <Compile Include="Assets\Scripts\GUI\Cards\HoverScale.cs" />
     <Compile Include="Assets\Scripts\GUI\Draggable.cs" />
+    <Compile Include="Assets\Scripts\GUI\FluctuateSpriteTransparency.cs" />
     <Compile Include="Assets\Scripts\GUI\Rotater.cs" />
     <Compile Include="Assets\Scripts\GUI\UIController.cs" />
     <Compile Include="Assets\Scripts\Hand\HandController.cs" />
     <Compile Include="Assets\Scripts\Hand\HandModel.cs" />
     <Compile Include="Assets\Scripts\Helpers\Constants.cs" />
     <Compile Include="Assets\Scripts\Helpers\GameObjectHelper.cs" />
+    <Compile Include="Assets\Scripts\Helpers\IDFactory.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\Actions\IActionSelectable.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerModel.cs" />
     <None Include="Assets\Demigiant\DOTween\readme.txt" />
     <Reference Include="UnityEngine">
       <HintPath>/Applications/Unity/Hub/Editor/2019.3.14f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>

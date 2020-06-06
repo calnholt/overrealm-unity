@@ -12,20 +12,18 @@ public class ActionBoardView : MonoBehaviour
     private List<Text> monsterActionTexts;
     private string activeMonsterName;
 
-    private PlayerMonstersController playerMonstersController;
+    private PlayerMonstersModel playerMonstersModel;
 
-    // Start is called before the first frame update
     void Start()
     {
-        playerMonstersController = playerMonstersObj.GetComponent<PlayerMonstersController>();
-        activeMonsterName = playerMonstersController.ActiveMonsterModel.MonsterCardModel.MonsterName;
+        playerMonstersModel = playerMonstersObj.GetComponent<PlayerMonstersModel>();
+        activeMonsterName = playerMonstersModel.ActiveMonsterModel.MonsterCardModel.MonsterName;
         setMonsterActionText();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        string currentActiveMonsterName = playerMonstersController.ActiveMonsterModel.MonsterCardModel.MonsterName;
+        string currentActiveMonsterName = playerMonstersModel.ActiveMonsterModel.MonsterCardModel.MonsterName;
         if (!currentActiveMonsterName.Equals(activeMonsterName)){
             setMonsterActionText();
             activeMonsterName = currentActiveMonsterName;
@@ -34,7 +32,7 @@ public class ActionBoardView : MonoBehaviour
 
     private void setMonsterActionText()
     {
-        List<ActionCardModel> actions = playerMonstersController.ActiveMonsterModel.ActionCardModels;
+        List<ActionCardModel> actions = playerMonstersModel.ActiveMonsterModel.ActionCardModels;
         for (int i = 0; i < actions.Count; i++)
         {
             monsterActionTexts[i].text = actions[i].AttackName;

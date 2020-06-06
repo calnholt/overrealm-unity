@@ -22,4 +22,8 @@ public static class GameObjectHelper
     {
         return new List<SCRIPT>(gameObject.GetComponentsInChildren<SCRIPT>());
     }
+    public static SCRIPT getScriptFromTag<SCRIPT>(Tags tag)
+    {
+        return GameObject.FindGameObjectWithTag(tag.ToString()).GetComponent<SCRIPT>();
+    }
 }
