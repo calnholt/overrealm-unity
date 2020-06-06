@@ -26,7 +26,6 @@ public class ActionCardView : MonoBehaviour
     private ActionCardModel actionModel;
     private StatCubeBoardModel statCubeBoardModel;
     private SpriteRenderer spriteRenderer;
-
     private ConstantsSingleton constantsSingleton;
 
     void Start()
@@ -64,12 +63,12 @@ public class ActionCardView : MonoBehaviour
         if (actionModel.IsHovering)
         {
             setSortingOrder(SortingOrders.ACTION_HOVER);
-            actionModel.transform.parent.GetChild(1).DOScale(hoverScale, 0.5f).SetEase(Ease.OutQuint);
+            transform.DOScale(hoverScale, 0.5f).SetEase(Ease.OutQuint);
         }
         else
         {
             setSortingOrder(SortingOrders.ACTION_DEFAULT);
-            actionModel.transform.parent.GetChild(1).DOScale(1, 0.5f).SetEase(Ease.OutQuint);
+            transform.DOScale(1, 0.5f).SetEase(Ease.OutQuint);
         }
     }
 
