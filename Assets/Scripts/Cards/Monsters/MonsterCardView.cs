@@ -23,8 +23,7 @@ public class MonsterCardView : CardView
     void Update()
     {
         updateMonsterGlow();
-        updateScale();
-        updateHover();
+        allCardUpdates();
     }
 
     private void updateMonsterGlow()

@@ -10,8 +10,6 @@ public class ManeuverModel : MonoBehaviour
     public int NumberRemaining { get => numberRemaining; set => numberRemaining = value; }
     public bool IsApplied { get => isApplied; set => isApplied = value; }
 
-
-
     public void apply()
     {
         if (numberRemaining == 0) return;

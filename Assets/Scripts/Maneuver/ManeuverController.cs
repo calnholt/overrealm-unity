@@ -22,11 +22,20 @@ public class ManeuverController : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (model.IsApplied || model.NumberRemaining == 0) return;
-        cardWithAppliedManeuver = playerMonstersModel.getCurrentSelectedAction();
-        if (!cardWithAppliedManeuver) return;
-        model.apply();
-        cardWithAppliedManeuver.IsManeuver = true;
+        if (!model.IsApplied && model.NumberRemaining == 0) return;
+        if (model.IsApplied)
+        {
+            cardWithAppliedManeuver.IsManeuver = false;
+            cardWithAppliedManeuver = null;
+            model.unapply();
+        }
+        else
+        {
+            cardWithAppliedManeuver = playerMonstersModel.getCurrentSelectedAction();
+            if (!cardWithAppliedManeuver) return;
+            model.apply();
+            cardWithAppliedManeuver.IsManeuver = true;
+        }
     }
 
     private void checkIfSelectedActionChanged()

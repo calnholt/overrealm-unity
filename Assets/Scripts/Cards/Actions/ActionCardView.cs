@@ -40,8 +40,7 @@ public class ActionCardView : CardView
     {
         updateActionStats();
         updateActionGlow();
-        updateScale();
-        updateHover();
+        allCardUpdates();
     }
 
     private void updateActionGlow()

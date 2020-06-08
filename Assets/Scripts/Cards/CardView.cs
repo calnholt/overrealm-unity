@@ -8,10 +8,12 @@ public abstract class CardView : MonoBehaviour
 {
     [SerializeField]
     protected GameObject cardSpriteObject;
+    protected SpriteRenderer cardSprite;
     [SerializeField]
     protected GameObject glowSpriteObject;
-    protected SpriteRenderer cardSprite;
     protected SpriteRenderer glowSprite;
+    [SerializeField]
+    protected GameObject manueverObject;
     private CardModel model;
     void Awake()
     {
@@ -20,7 +22,7 @@ public abstract class CardView : MonoBehaviour
         glowSprite = glowSpriteObject.GetComponent<SpriteRenderer>();
     }
 
-    protected void updateScale()
+    private void updateScale()
     {
         if (!model.IsHovering && !model.IsHoveringApplied && !transform.IsTransformScaleDefault())
         {
@@ -28,7 +30,7 @@ public abstract class CardView : MonoBehaviour
         }
     }
 
-    protected void updateHover()
+    private void updateHover()
     {
         if (model.IsHovering)
         {
@@ -40,6 +42,25 @@ public abstract class CardView : MonoBehaviour
             setSortingOrder(SortingOrders.ACTION_DEFAULT);
             transform.DOScale(1, 0.5f).SetEase(Ease.OutQuint);
         }
+    }
+
+    private void updateManuever()
+    {
+        if (model.IsManeuver && !manueverObject.activeSelf)
+        {
+            manueverObject.SetActive(true);
+        }
+        else if (!model.IsManeuver && manueverObject.activeSelf)
+        {
+            manueverObject.SetActive(false);
+        }
+    }
+
+    protected void allCardUpdates()
+    {
+        updateScale();
+        updateHover();
+        updateManuever();
     }
 
     protected abstract void setSortingOrder(int order);
