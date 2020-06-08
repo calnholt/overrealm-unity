@@ -92,6 +92,7 @@ public class ActionCardModel : CardModel, IActionSelectable
     public void unselectAction()
     {
         isSelected = false;
+        isManeuver = false;
         if (getNumberOfApplied() == 0) return;
         List<GameObject> appliedCards = new List<GameObject>(buffsToApply);
         appliedCards.AddRange(discardsToApply);
