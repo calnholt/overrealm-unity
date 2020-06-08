@@ -25,6 +25,16 @@ public class ConstantsSingleton : GenericSingletonClass<ConstantsSingleton>
     [SerializeField]
     private Color negativeStat;
 
+    [Header("Hover Punch Settings")]
+    [SerializeField]
+    private Vector3 hoverPunchVector;
+    [SerializeField]
+    private float hoverPunchDuration;
+    [SerializeField]
+    private int hoverPunchVibrato = 10;
+    [SerializeField]
+    private int hoverPunchElasticity = 1;
+
     public Color Fire { get => fire; set => fire = value; }
     public Color Water { get => water; set => water = value; }
     public Color Rock { get => rock; set => rock = value; }
@@ -33,6 +43,10 @@ public class ConstantsSingleton : GenericSingletonClass<ConstantsSingleton>
     public Color Leaf { get => leaf; set => leaf = value; }
     public Color PositiveStat { get => positiveStat; set => positiveStat = value; }
     public Color NegativeStat { get => negativeStat; set => negativeStat = value; }
+    public Vector3 HoverPunchVector { get => hoverPunchVector; set => hoverPunchVector = value; }
+    public float HoverPunchDuration { get => hoverPunchDuration; set => hoverPunchDuration = value; }
+    public int HoverPunchVibrato { get => hoverPunchVibrato; set => hoverPunchVibrato = value; }
+    public int HoverPunchElasticity { get => hoverPunchElasticity; set => hoverPunchElasticity = value; }
 
     public Color getColor(Elements element)
     {

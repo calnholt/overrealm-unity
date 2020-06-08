@@ -55,12 +55,12 @@ public class HandController : MonoBehaviour
             }
         }
         // update fanning when cards in hand number changes
-        else if (previousNumOfCards != currentNumOfCards)
+        checkIfAppliedCardsMovingBackToHand();
+        if (previousNumOfCards != currentNumOfCards)
         {
             updateHandFanning();
             previousNumOfCards = currentNumOfCards;
         }
-        checkIfAppliedCardsMovingBackToHand();
     }
 
     // whenever a card is removed from the hand, it has been applied

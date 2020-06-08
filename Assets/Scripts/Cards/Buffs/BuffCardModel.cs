@@ -35,7 +35,7 @@ public class BuffCardModel : CardModel
     private bool critFlg;
     [SerializeField]
     private bool flipEventFlg;
-    private BuffCardState state = BuffCardState.movingToHand;
+    public BuffCardState state = BuffCardState.movingToHand;
     private bool hoveringOverApplied = false;
 
     public Timings Timing { get => timing; set => timing = value; }
@@ -90,6 +90,13 @@ public class BuffCardModel : CardModel
         return state == BuffCardState.hoveringInHandFullyUp
             || state == BuffCardState.hoveringInHandMovingDown
             || state == BuffCardState.hoveringInHandMovingUp;
+    }
+
+    public bool isAppliedToMonster()
+    {
+        return state == BuffCardState.appliedAsDrawThree
+            || state == BuffCardState.appliedAsSwitchLeft
+            || state == BuffCardState.appliedAsSwitchRight;
     }
 
 }

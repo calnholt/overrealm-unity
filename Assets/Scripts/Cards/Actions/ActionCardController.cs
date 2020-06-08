@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class ActionCardController : MonoBehaviour
 {
@@ -118,6 +119,7 @@ public class ActionCardController : MonoBehaviour
             if (buff.isDragging())
             {
                 draggingBuff = buff;
+                actionCardModel.IsHoveringApplied = true;
             }
         }
     }
@@ -128,6 +130,8 @@ public class ActionCardController : MonoBehaviour
         if (buff && draggingBuff != null)
         {
             draggingBuff = null;
+            actionCardModel.IsHovering = false;
+            actionCardModel.IsHoveringApplied = false;
         }
     }
 

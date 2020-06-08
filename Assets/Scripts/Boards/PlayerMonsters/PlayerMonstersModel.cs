@@ -23,7 +23,7 @@ public class PlayerMonstersModel : MonoBehaviour
         setCardModels();
     }
 
-    public CardModel getSelectedActionModel(int id)
+    public CardModel getNewestSelectedActionModel(int id)
     {
         // set id to -1 when not trying to locate by id
         if (id == -1)
@@ -52,7 +52,11 @@ public class PlayerMonstersModel : MonoBehaviour
             return instanceId != id && cardModel.GetComponent<IActionSelectable>().isActionSelected();
         });
         return selectedAction;
+    }
 
+    public CardModel getCurrentSelectedAction()
+    {
+        return cardModels.Find(cardModel => cardModel.GetComponent<IActionSelectable>().isActionSelected());
     }
 
     private void setCardModels()

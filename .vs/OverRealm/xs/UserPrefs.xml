@@ -1,24 +1,20 @@
 ﻿<Properties StartupConfiguration="{90F70B01-DB7D-869B-5BA3-ECDCE3CEC2DC}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Cards/Actions/ActionCardController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Cards/Actions/ActionCardView.cs">
     <Files>
-      <File FileName="Assets/Scripts/Boards/PlayerMonsters/PlayerMonstersController.cs" Line="30" Column="1" />
-      <File FileName="Assets/Scripts/FullMonster/FullMonsterController.cs" Line="18" Column="1" />
-      <File FileName="Assets/Scripts/Boards/PlayerMonsters/PlayerMonstersModel.cs" Line="39" Column="72" />
-      <File FileName="Assets/Scripts/Cards/Monsters/MonsterCardController.cs" Line="29" Column="10" />
-      <File FileName="Assets/Scripts/Cards/Buffs/BuffCardModel.cs" Line="38" Column="56" />
-      <File FileName="Assets/Scripts/Cards/Buffs/BuffCardController.cs" Line="36" Column="40" />
-      <File FileName="Assets/Scripts/Hand/HandController.cs" Line="11" Column="33" />
-      <File FileName="Assets/Scripts/Cards/Actions/ActionCardModel.cs" Line="108" Column="1" NotebookId="1" />
-      <File FileName="Assets/Scripts/Cards/Actions/ActionCardView.cs" NotebookId="1" />
-      <File FileName="Assets/Scripts/Cards/Actions/ActionCardController.cs" Line="71" Column="6" NotebookId="1" />
-      <File FileName="Assets/Scripts/FullMonster/FullMonsterModel.cs" Line="22" Column="6" NotebookId="1" />
-      <File FileName="Assets/Scripts/Cards/Monsters/MonsterCardModel.cs" Line="45" Column="64" NotebookId="1" />
-      <File FileName="Assets/Scripts/Cards/Buffs/BuffCardView.cs" Line="6" Column="14" NotebookId="1" />
+      <File FileName="Assets/Scripts/Cards/Monsters/MonsterCardView.cs" Line="24" Column="6" />
+      <File FileName="Assets/Scripts/Cards/Actions/ActionCardModel.cs" Line="11" Column="30" />
+      <File FileName="Assets/Scripts/Cards/Monsters/MonsterCardModel.cs" Line="11" Column="51" />
+      <File FileName="Assets/Scripts/Interfaces/Actions/IActionSelectable.cs" Line="5" Column="11" />
+      <File FileName="Assets/Scripts/Helpers/SortingLayersExposed.cs" Line="5" Column="40" />
+      <File FileName="Assets/Scripts/Cards/CardView.cs" Line="12" Column="43" NotebookId="1" />
+      <File FileName="Assets/Scripts/Cards/CardModel.cs" Line="5" Column="14" NotebookId="1" />
+      <File FileName="Assets/Scripts/Cards/Monsters/MonsterCardController.cs" Line="44" Column="1" NotebookId="1" />
+      <File FileName="Assets/Scripts/Cards/Actions/ActionCardView.cs" Line="11" Column="18" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="fb8953f3-0dad-46ee-8c6a-e1cdbd6852e7" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="c0b398a4-165b-4f47-ac0f-eb0a29b62b95" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

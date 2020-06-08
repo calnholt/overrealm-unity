@@ -38,6 +38,7 @@ public class ApplyBuffController : MonoBehaviour
         buffCardModel = GameObjectHelper.getScriptFromModel<BuffCardModel>(collision.gameObject);
         if (buffCardModel && buffCardModel.State == BuffCardState.dragging && actionCardModel.canApplyBuff())
         {
+            transform.parent.parent.HoverPunch();
             buffToApply = collision.transform.parent.gameObject;
             buffCardModel.State = BuffCardState.draggingOverBuffApply;
         }

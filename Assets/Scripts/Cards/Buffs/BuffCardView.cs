@@ -49,30 +49,7 @@ public class BuffCardView : MonoBehaviour
         {
             spriteRenderer.sortingOrder = 0;
         }
-        if (model.State == BuffCardState.draggingOverBuffApply)
-        {
-            buffOverlayManager.BuffFluctuate.SetActive(true);
-        }
-        if (model.State == BuffCardState.draggingOverDiscardApply)
-        {
-            buffOverlayManager.DiscardFluctuate.SetActive(true);
-        }
-        if (model.State == BuffCardState.draggingOverDrawThreeApply)
-        {
-            buffOverlayManager.DrawThreeFluctuate.SetActive(true);
-        }
-        if (model.State != BuffCardState.draggingOverBuffApply && buffOverlayManager.BuffFluctuate.activeSelf)
-        {
-            buffOverlayManager.BuffFluctuate.SetActive(false);
-        }
-        if (model.State != BuffCardState.draggingOverDiscardApply && buffOverlayManager.DiscardFluctuate.activeSelf)
-        {
-            buffOverlayManager.DiscardFluctuate.SetActive(false);
-        }
-        if (model.State != BuffCardState.draggingOverDrawThreeApply && buffOverlayManager.DrawThreeFluctuate.activeSelf)
-        {
-            buffOverlayManager.DrawThreeFluctuate.SetActive(false);
-        }
+        updateDraggingOver();
         if (model.HoveringOverApplied)
         {
             spriteRenderer.sortingOrder = 20;
@@ -96,6 +73,14 @@ public class BuffCardView : MonoBehaviour
             {
                 buffOverlayManager.setAsDrawThree();
             }
+            if (model.State == BuffCardState.appliedAsSwitchLeft)
+            {
+                buffOverlayManager.setAsSwitchLeft();
+            }
+            if (model.State == BuffCardState.appliedAsSwitchRight)
+            {
+                buffOverlayManager.setAsSwitchRight();
+            }
         }
         // increase card size when hovering
         if (model.State == BuffCardState.hoveringInHandMovingUp)
@@ -108,6 +93,50 @@ public class BuffCardView : MonoBehaviour
             model.transform.parent.DOScale(hoveringInHandMovingDownScale, duration).SetEase(Ease.OutQuint);
         }
         previousState = model.State;
+    }
+
+    private void updateDraggingOver()
+    {
+        if (model.State == BuffCardState.draggingOverBuffApply)
+        {
+            buffOverlayManager.BuffFluctuate.SetActive(true);
+        }
+        if (model.State == BuffCardState.draggingOverDiscardApply)
+        {
+            buffOverlayManager.DiscardFluctuate.SetActive(true);
+        }
+        if (model.State == BuffCardState.draggingOverDrawThreeApply)
+        {
+            buffOverlayManager.DrawThreeFluctuate.SetActive(true);
+        }
+        if (model.State == BuffCardState.draggingOverSwitchRightApply)
+        {
+            buffOverlayManager.SwitchRightFluctuate.SetActive(true);
+        }
+        if (model.State == BuffCardState.draggingOverSwitchLeftApply)
+        {
+            buffOverlayManager.SwitchLeftFluctuate.SetActive(true);
+        }
+        if (model.State != BuffCardState.draggingOverBuffApply && buffOverlayManager.BuffFluctuate.activeSelf)
+        {
+            buffOverlayManager.BuffFluctuate.SetActive(false);
+        }
+        if (model.State != BuffCardState.draggingOverDiscardApply && buffOverlayManager.DiscardFluctuate.activeSelf)
+        {
+            buffOverlayManager.DiscardFluctuate.SetActive(false);
+        }
+        if (model.State != BuffCardState.draggingOverDrawThreeApply && buffOverlayManager.DrawThreeFluctuate.activeSelf)
+        {
+            buffOverlayManager.DrawThreeFluctuate.SetActive(false);
+        }
+        if (model.State != BuffCardState.draggingOverSwitchRightApply && buffOverlayManager.SwitchRightFluctuate.activeSelf)
+        {
+            buffOverlayManager.SwitchRightFluctuate.SetActive(false);
+        }
+        if (model.State != BuffCardState.draggingOverSwitchLeftApply && buffOverlayManager.SwitchLeftFluctuate.activeSelf)
+        {
+            buffOverlayManager.SwitchLeftFluctuate.SetActive(false);
+        }
     }
 
     private void tweenWithDisable(float scale)

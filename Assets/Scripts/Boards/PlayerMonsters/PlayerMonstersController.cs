@@ -16,7 +16,7 @@ public class PlayerMonstersController : MonoBehaviour
     void Update()
     {
         int id = previousSelectedAction ? previousSelectedAction.GetInstanceID() : -1;
-        CardModel currentSelectedAction = playerMonstersModel.getSelectedActionModel(id);
+        CardModel currentSelectedAction = playerMonstersModel.getNewestSelectedActionModel(id);
         if (!currentSelectedAction) return;
         checkDifferentActionIsSelected(currentSelectedAction);
     }

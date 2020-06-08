@@ -24,7 +24,7 @@ namespace Constants
     }
     public enum Tags
     {
-        Singleton, 
+        Singleton, Player
     }
     public static class SortingOrders
     {

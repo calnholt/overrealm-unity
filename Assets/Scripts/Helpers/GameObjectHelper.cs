@@ -24,6 +24,10 @@ public static class GameObjectHelper
     }
     public static SCRIPT getScriptFromTag<SCRIPT>(Tags tag)
     {
-        return GameObject.FindGameObjectWithTag(tag.ToString()).GetComponent<SCRIPT>();
+        return GameObject.FindGameObjectWithTag(tag.ToString()).GetComponentInChildren<SCRIPT>();
+    }
+    public static ConstantsSingleton getConstantsSingleton()
+    {
+        return GameObjectHelper.getScriptFromTag<ConstantsSingleton>(Tags.Singleton);
     }
 }

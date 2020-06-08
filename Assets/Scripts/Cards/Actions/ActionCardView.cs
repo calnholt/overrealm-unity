@@ -5,70 +5,55 @@ using UnityEngine.UI;
 using DG.Tweening;
 using Constants;
 
-public class ActionCardView : MonoBehaviour
+public class ActionCardView : CardView
 {
     [SerializeField]
-    private Text speedText;
+    private GameObject speedTextObject;
+    private TextMesh speedText;
+    private MeshRenderer speedTextMesh;
     [SerializeField]
-    private Text attackText;
-    [SerializeField]
-    private Image glowImage;
-    [SerializeField]
-    private float hoverScale;
-    [SerializeField]
-    private Canvas statCanvas;
-    [SerializeField]
-    private Canvas glowCanvas;
+    private GameObject attackTextObject;
+    private TextMesh attackText;
+    private MeshRenderer attackTextMesh;
 
     private int prevAttack = -10;
     private int prevSpeed = -10;
 
     private ActionCardModel actionModel;
     private StatCubeBoardModel statCubeBoardModel;
-    private SpriteRenderer spriteRenderer;
     private ConstantsSingleton constantsSingleton;
 
     void Start()
     {
         statCubeBoardModel = GameObjectHelper.getUIController().getPlayerStatCubeBoardModel(true);
         actionModel = GameObjectHelper.getScriptFromModel<ActionCardModel>(this.gameObject);
-        constantsSingleton = GameObjectHelper.getScriptFromTag<ConstantsSingleton>(Tags.Singleton);
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        speedText.text = actionModel.Speed.ToString() ;
-        attackText.text = actionModel.Attack.ToString();
+        constantsSingleton = GameObjectHelper.getConstantsSingleton();
+
+        speedText = speedTextObject.GetComponent<TextMesh>();
+        speedTextMesh = speedTextObject.GetComponent<MeshRenderer>();
+
+        attackText = speedTextObject.GetComponent<TextMesh>();
+        attackTextMesh = speedTextObject.GetComponent<MeshRenderer>();
     }
 
     void Update()
     {
         updateActionStats();
         updateActionGlow();
-        updateActionHover();
+        updateScale();
+        updateHover();
     }
 
     private void updateActionGlow()
     {
-        if (actionModel.IsSelected && !glowImage.enabled)
+        if (actionModel.IsSelected && !glowSprite.enabled)
         {
-            glowImage.enabled = true;
-            glowImage.color = constantsSingleton.getColor(actionModel.Element);
+            glowSprite.enabled = true;
+            glowSprite.color = constantsSingleton.getColor(actionModel.Element);
         }
         else if (!actionModel.IsSelected)
         {
-            glowImage.enabled = false;
-        }
-    }
-
-    private void updateActionHover()
-    {
-        if (actionModel.IsHovering)
-        {
-            setSortingOrder(SortingOrders.ACTION_HOVER);
-            transform.DOScale(hoverScale, 0.5f).SetEase(Ease.OutQuint);
-        }
-        else
-        {
-            setSortingOrder(SortingOrders.ACTION_DEFAULT);
-            transform.DOScale(1, 0.5f).SetEase(Ease.OutQuint);
+            glowSprite.enabled = false;
         }
     }
 
@@ -95,7 +80,7 @@ public class ActionCardView : MonoBehaviour
         }
     }
 
-    private void setStat(Text text, int value, int originalValue)
+    private void setStat(TextMesh text, int value, int originalValue)
     {
         if (value > 9)
         {
@@ -118,14 +103,11 @@ public class ActionCardView : MonoBehaviour
         }
     }
 
-    private void setSortingOrder(int order)
+    protected override void setSortingOrder(int order)
     {
-        spriteRenderer.sortingOrder = order;
-        statCanvas.sortingOrder = order;
-        glowCanvas.sortingOrder = order - 1;
+        cardSprite.sortingOrder = order;
+        speedTextMesh.sortingOrder = order;
+        attackTextMesh.sortingOrder = order;
+        glowSprite.sortingOrder = order - 1;
     }
-
-        
-
-    
 }

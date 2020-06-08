@@ -67,6 +67,14 @@ public class BuffCardController : MonoBehaviour
         {
             buffCardModel.State = BuffCardState.appliedAsDrawThree;
         }
+        else if (buffCardModel.State == BuffCardState.draggingOverSwitchLeftApply)
+        {
+            buffCardModel.State = BuffCardState.appliedAsSwitchLeft;
+        }
+        else if (buffCardModel.State == BuffCardState.draggingOverSwitchRightApply)
+        {
+            buffCardModel.State = BuffCardState.appliedAsSwitchRight;
+        }
         else
         {
             buffCardModel.State = BuffCardState.movingToHand;

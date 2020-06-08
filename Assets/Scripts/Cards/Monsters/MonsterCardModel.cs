@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Constants;
 
+public enum MonsterCardState
+{
+    active, left, right
+}
+
 public class MonsterCardModel : CardModel, IActionSelectable
 {
     [SerializeField]
@@ -18,9 +23,7 @@ public class MonsterCardModel : CardModel, IActionSelectable
     [Range(1,3)]
     private int complexity;
     [SerializeField]
-    private bool isActive;
-    [SerializeField]
-    private bool isLeft;
+    private MonsterCardState state;
 
     // status condition flags
     private bool isLeeched = false;
@@ -44,9 +47,8 @@ public class MonsterCardModel : CardModel, IActionSelectable
     public bool IsFatigued { get => isFatigued; set => isFatigued = value; }
     public int Wishes { get => wishes; set => wishes = value; }
     public string MonsterName { get => monsterName; set => monsterName = value; }
-    public bool IsActive { get => isActive; set => isActive = value; }
-    public bool IsLeft { get => isLeft; set => isLeft = value; }
     public BuffCardModel AppliedCard { get => appliedCard; set => appliedCard = value; }
+    public MonsterCardState State { get => state; set => state = value; }
 
     public bool isApplied()
     {
