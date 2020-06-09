@@ -5,10 +5,10 @@ using DG.Tweening;
 
 public static class ExtensionMethods
 {
-    public static void HoverPunch(this Transform t)
+    public static Tweener HoverPunch(this Transform t)
     {
         ConstantsSingleton s = GameObjectHelper.getConstantsSingleton();
-        t.DOPunchScale(s.HoverPunchVector, s.HoverPunchDuration, s.HoverPunchVibrato, s.HoverPunchElasticity);
+        return t.DOPunchScale(s.HoverPunchVector, s.HoverPunchDuration, s.HoverPunchVibrato, s.HoverPunchElasticity);
     }
 
     public static bool IsTransformScaleDefault(this Transform t)

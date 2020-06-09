@@ -32,6 +32,11 @@ public class ManeuverController : MonoBehaviour
         else
         {
             cardWithAppliedManeuver = playerMonstersModel.getCurrentSelectedAction();
+            // non-active monsters can't be applied
+            if (!CardModel.isActiveMonster(cardWithAppliedManeuver) && !CardModel.isAction(cardWithAppliedManeuver))
+            {
+                cardWithAppliedManeuver = null;
+            }
             if (!cardWithAppliedManeuver) return;
             model.apply();
             cardWithAppliedManeuver.IsManeuver = true;
@@ -54,4 +59,5 @@ public class ManeuverController : MonoBehaviour
             model.unapply();
         }
     }
+
 }

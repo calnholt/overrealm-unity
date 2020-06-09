@@ -18,6 +18,7 @@ public class MonsterCardController : MonoBehaviour
         if (!buff) return;
         checkIfCardApplied();
         checkIfBuffBecomesUnapplied();
+        checkIfIsCounter();
     }
 
     private void checkIfCardApplied()
@@ -36,6 +37,26 @@ public class MonsterCardController : MonoBehaviour
         if (buff.State == BuffCardState.movingToHand && monsterCardModel.AppliedCard)
         {
             monsterCardModel.AppliedCard = null;
+            monsterCardModel.unselectAction();
+        }
+    }
+
+    // manages applied buff's state depending on manuever
+    private void checkIfIsCounter()
+    {
+        if (monsterCardModel.isActionSelected()
+            && monsterCardModel.IsManeuver
+            && monsterCardModel.State == MonsterCardState.active
+            && monsterCardModel.AppliedCard.State != BuffCardState.appliedAsCounter)
+        {
+            monsterCardModel.AppliedCard.State = BuffCardState.appliedAsCounter;
+        }
+        else if (monsterCardModel.isActionSelected()
+            && !monsterCardModel.IsManeuver
+            && monsterCardModel.State == MonsterCardState.active
+            && monsterCardModel.AppliedCard.State != BuffCardState.appliedAsDrawThree)
+        {
+            monsterCardModel.AppliedCard.State = BuffCardState.appliedAsDrawThree;
         }
     }
 
@@ -56,7 +77,7 @@ public class MonsterCardController : MonoBehaviour
             buff = collision.transform.parent.GetComponentInChildren<BuffCardModel>();
             if (buff && buff.isDragging())
             {
-                transform.parent.HoverPunch();
+                //transform.parent.HoverPunch();
                 monsterCardModel.IsHoveringApplied = true;
                 if (monsterCardModel.State == MonsterCardState.active)
                 {

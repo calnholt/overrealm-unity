@@ -19,6 +19,7 @@ public class ManeuverModel : MonoBehaviour
 
     public void unapply()
     {
+        if (!isApplied) return;
         numberRemaining++;
         isApplied = false;
     }

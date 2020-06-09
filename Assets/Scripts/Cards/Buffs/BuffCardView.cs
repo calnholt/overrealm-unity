@@ -81,6 +81,10 @@ public class BuffCardView : MonoBehaviour
             {
                 buffOverlayManager.setAsSwitchRight();
             }
+            if (model.State == BuffCardState.appliedAsCounter)
+            {
+                buffOverlayManager.setAsCounter();
+            }
         }
         // increase card size when hovering
         if (model.State == BuffCardState.hoveringInHandMovingUp)

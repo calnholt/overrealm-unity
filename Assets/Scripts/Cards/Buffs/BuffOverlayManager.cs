@@ -24,6 +24,10 @@ public class BuffOverlayManager : MonoBehaviour
     private GameObject drawThreeFluctuate;
     [SerializeField]
     private GameObject drawThree;
+    [SerializeField]
+    private GameObject counterFluctuate;
+    [SerializeField]
+    private GameObject counter;
 
     public GameObject BuffFluctuate { get => buffFluctuate; set => buffFluctuate = value; }
     public GameObject Buff { get => buff; set => buff = value; }
@@ -35,6 +39,8 @@ public class BuffOverlayManager : MonoBehaviour
     public GameObject SwitchRight { get => switchRight; set => switchRight = value; }
     public GameObject DrawThreeFluctuate { get => drawThreeFluctuate; set => drawThreeFluctuate = value; }
     public GameObject DrawThree { get => drawThree; set => drawThree = value; }
+    public GameObject CounterFluctuate { get => counterFluctuate; set => counterFluctuate = value; }
+    public GameObject Counter { get => counter; set => counter = value; }
 
     void Awake()
     {
@@ -48,6 +54,8 @@ public class BuffOverlayManager : MonoBehaviour
         switchRight.SetActive(false);
         drawThreeFluctuate.SetActive(false);
         drawThree.SetActive(false);
+        counterFluctuate.SetActive(false);
+        counter.SetActive(false);
     }
 
     public void setVisible(bool boolean)
@@ -74,6 +82,8 @@ public class BuffOverlayManager : MonoBehaviour
         list.Add(switchRight);
         list.Add(drawThreeFluctuate);
         list.Add(drawThree);
+        list.Add(counterFluctuate);
+        list.Add(counter);
         return list;
     }
 
@@ -105,7 +115,16 @@ public class BuffOverlayManager : MonoBehaviour
     {
         drawThreeFluctuate.SetActive(false);
         drawThree.SetActive(true);
+        counter.SetActive(false);
         drawThree.GetComponent<SpriteRenderer>().sortingOrder = 1;
+    }
+
+    public void setAsCounter()
+    {
+        counterFluctuate.SetActive(false);
+        counter.SetActive(true);
+        drawThree.SetActive(false);
+        counter.GetComponent<SpriteRenderer>().sortingOrder = 1;
     }
 
 }

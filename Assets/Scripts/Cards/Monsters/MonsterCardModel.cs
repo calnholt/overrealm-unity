@@ -62,6 +62,8 @@ public class MonsterCardModel : CardModel, IActionSelectable
 
     public void unselectAction()
     {
+        isSelected = false;
+        isManeuver = false;
         if (appliedCard)
         {
             appliedCard.State = BuffCardState.movingToHand;

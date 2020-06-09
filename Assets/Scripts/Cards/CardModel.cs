@@ -13,4 +13,16 @@ public class CardModel : MonoBehaviour
     public bool IsHovering { get => isHovering; set => isHovering = value; }
     public bool IsHoveringApplied { get => isHoveringApplied; set => isHoveringApplied = value; }
     public bool IsManeuver { get => isManeuver; set => isManeuver = value; }
+
+    public static bool isActiveMonster(CardModel cardModel)
+    {
+        MonsterCardModel monsterCardModel = cardModel.GetComponent<MonsterCardModel>();
+        if (!monsterCardModel) return false;
+        return monsterCardModel.State == MonsterCardState.active;
+    }
+
+    public static bool isAction(CardModel cardModel)
+    {
+        return cardModel.GetComponent<ActionCardModel>();
+    }
 }

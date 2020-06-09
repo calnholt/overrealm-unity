@@ -32,8 +32,8 @@ public class ActionCardView : CardView
         speedText = speedTextObject.GetComponent<TextMesh>();
         speedTextMesh = speedTextObject.GetComponent<MeshRenderer>();
 
-        attackText = speedTextObject.GetComponent<TextMesh>();
-        attackTextMesh = speedTextObject.GetComponent<MeshRenderer>();
+        attackText = attackTextObject.GetComponent<TextMesh>();
+        attackTextMesh = attackTextObject.GetComponent<MeshRenderer>();
     }
 
     void Update()
@@ -106,7 +106,7 @@ public class ActionCardView : CardView
     {
         cardSprite.sortingOrder = order;
         speedTextMesh.sortingOrder = order;
-        attackTextMesh.sortingOrder = order;
+        attackTextMesh.sortingOrder = order + 1;
         glowSprite.sortingOrder = order - 1;
     }
 }
